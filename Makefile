@@ -1,9 +1,20 @@
-migrate:
-	python manage.py makemigrations
-	python manage.py migrate
+.PHONY: app test migrate pro admin django
 
 app:
-	python manage.py startapp ${name}
+	docker-compose run --rm app sh -c "python manage.py startapp ${app}"
 
 test:
-	pytest -l -v -s ${app}
+	docker-compose run --rm app sh -c "pytest -l -v -s ${app} && flake8"
+
+migrate:
+	docker-compose run --rm app sh -c "python manage.py makemigrations"
+	docker-compose run --rm app sh -c "python manage.py migrate"
+
+pro:
+	docker-compose run --rm app sh -c "django-admin startproject ${pro} ."
+
+admin:
+	docker-compose run --rm app sh -c "python manage.py createsuperuser"
+
+django:
+	docker-compose run --rm app sh -c "django-admin startproject app ."
