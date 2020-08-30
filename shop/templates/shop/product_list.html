@@ -1,10 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-product list
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+    {% if category %}
+        {{ category.description }}
+    {% else %}
+        Welcome to the my store
+    {% endif %}
+{% endblock %}
+
+{% block title %}
+    {% if category %}
+        {{ category.name }} - my store
+    {% else %}
+        my store
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div>
+        <img src="{% static 'img/banner.jpg' %}" alt="banner">
+    </div>
+    <br>
+    <div>
+        <h1>Our Products</h1>
+        <p>finding your items</p>
+    </div>
+
+    <div>
+        <div>
+            {% for product in products %}
+                <div>
+                    <div>
+                        <a href=""><img src="{{ product.image.url }}" alt="{{ product.name }}"></a>
+                        <div>
+                            <h4>{{ product.name }}</h4>
+                            <p>¥{{ product.price }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
