@@ -34,6 +34,7 @@ class ViewTest(TestCase):
             price=30,
             stock=10,
             available=True,
+            image='test.png',
         )
         self.product2 = Product.objects.create(
             name='pig',
@@ -43,6 +44,7 @@ class ViewTest(TestCase):
             price=30,
             stock=10,
             available=True,
+            image='test.png'
         )
         self.product3 = Product.objects.create(
             name='dog',
@@ -52,6 +54,7 @@ class ViewTest(TestCase):
             price=30,
             stock=10,
             available=False,
+            image='test.png'
         )
 
         # product_listのViewを呼び出す
@@ -61,3 +64,27 @@ class ViewTest(TestCase):
         assert 'pag' in [product.name for product in response.context['products']]
         assert 'pig' in [product.name for product in response.context['products']]
         assert 'dog' not in [product.name for product in response.context['products']]
+
+
+class ProductDetailTest(TestCase):
+
+    def setUp(self):
+        self.category = Category.objects.create(
+            name='Black Urban Cushion',
+            slug='black-urban-cushion',
+            description='description',
+        )
+        self.product = Product.objects.create(
+            name='pag',
+            slug='pag',
+            description='cute pag',
+            category=self.category,
+            price=30,
+            stock=10,
+            available=True,
+            image='test.png'
+        )
+
+    def test_correct_urls(self):
+        response = self.client.get(self.product.get_url())
+        assert response.status_code == 200

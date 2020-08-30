@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.urls import reverse
 
 class ValidManager(models.Manager):
     """available=TrueのProductだけ返すようにする"""
@@ -39,6 +39,9 @@ class Product(models.Model):
     objects = models.Manager()
     # カスタムマネージャー
     valid_objects = ValidManager()
+
+    def get_url(self):
+        return reverse('shop:product_detail', args=[self.slug])
 
     class Meta:
         ordering = ('name',)
