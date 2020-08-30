@@ -4,3 +4,6 @@ migrate:
 
 app:
 	python manage.py startapp ${name}
+
+test:
+	pytest -l -v -s ${app}
