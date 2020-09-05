@@ -26,12 +26,3 @@ COPY . /ECsite
 # staticファイルの保存先を作成
 RUN mkdir -p /vol/web/media
 RUN mkdir -p /vol/web/static
-
-# User作成
-RUN adduser -D user
-# User権限付与
-RUN chown -R user:user /vol/
-RUN chmod -R 755 /vol/web
-
-# userを指定
-USER user

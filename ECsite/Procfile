@@ -1,0 +1,1 @@
+web: gunicorn ECsite.wsgi --log-file -

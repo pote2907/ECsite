@@ -13,6 +13,7 @@ services:
       sh -c "python manage.py migrate &&
              python manage.py runserver 0.0.0.0:8000"
     environment:
+      - DJANGO_SETTINGS_MODULE=ECsite.settings.prod
       - DB_HOST=db
       - DB_NAME=app
       - DB_USER=postgres
