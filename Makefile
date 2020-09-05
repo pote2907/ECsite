@@ -16,8 +16,9 @@ pro:
 admin:
 	docker-compose run --rm app sh -c "python manage.py createsuperuser"
 
-django:
-	docker-compose run --rm app sh -c "django-admin startproject app ."
+init:
+	docker-compose run --rm app sh -c "python manage.py makemigrations shop"
+	docker-compose run --rm app sh -c "python manage.py makemigrations cart"
 
 restart:
 	docker-compose restart

@@ -7,6 +7,9 @@ $ docker-compose build
 # マイグレーション
 $ make migrate
 
+# shop, cartの初期化
+make init
+
 # スーパーユーザー作成
 $ make admin
 
