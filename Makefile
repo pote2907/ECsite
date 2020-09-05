@@ -18,3 +18,11 @@ admin:
 
 django:
 	docker-compose run --rm app sh -c "django-admin startproject app ."
+
+restart:
+	docker-compose restart
+	docker-compose stop
+	heroku container:login
+	heroku container:push web -a ecsite-app
+	heroku container:release web -a ecsite-app
+	

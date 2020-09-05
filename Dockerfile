@@ -26,3 +26,5 @@ COPY . /ECsite
 # staticファイルの保存先を作成
 RUN mkdir -p /vol/web/media
 RUN mkdir -p /vol/web/static
+
+CMD gunicorn ECsite.wsgi:application --bind 0.0.0.0:$PORT
