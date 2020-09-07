@@ -1,12 +1,20 @@
-from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
-from shop.models import Product
+from django.shortcuts import render, get_object_or_404
+
+from shop.models import Product, Category
 
 
-def all_products(request):
-    # available=TrueのProductを取得
-    products_list = Product.valid_objects.all()
+def all_products(request, c_slug=None):
+    products_list = None
+    category_page = None
 
+    if c_slug is not None:
+        category_page = get_object_or_404(Category, slug=c_slug)
+        # 特定のカテゴリーのみ取得
+        products_list = Product.objects.filter(category=category_page, available=True)
+    else:
+        # available=TrueのProductを取得
+        products_list = Product.valid_objects.all()
     # 3製品ごとに分割
     paginator = Paginator(products_list, 3)
     try:
@@ -20,7 +28,7 @@ def all_products(request):
     except (EmptyPage, InvalidPage):
         products = paginator.page(paginator.num_pages)
 
-    return render(request, 'shop/product_list.html', {'products': products})
+    return render(request, 'shop/product_list.html', {'products': products, 'category': category_page})
 
 
 def product_detail(request, product_slug):

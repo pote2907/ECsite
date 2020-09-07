@@ -47,6 +47,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'shop.context_processors.menu_links',
                 'cart.context_processors.counter',
             ],
         },
@@ -54,8 +55,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'ECsite.wsgi.application'
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
