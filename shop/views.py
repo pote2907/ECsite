@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
 from django.shortcuts import render, get_object_or_404
 
-from shop.models import Product, Category
+from shop.models import Product, MediumCategory, LargeCategory
 
 
 def all_products(request, c_slug=None):
@@ -9,7 +9,7 @@ def all_products(request, c_slug=None):
     category_page = None
 
     if c_slug is not None:
-        category_page = get_object_or_404(Category, slug=c_slug)
+        category_page = get_object_or_404(MediumCategory, slug=c_slug)
         # 特定のカテゴリーのみ取得
         products_list = Product.objects.filter(category=category_page, available=True)
     else:

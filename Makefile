@@ -7,8 +7,8 @@ test:
 	docker-compose run --rm app sh -c "pytest -l -v -s ${app} && flake8"
 
 migrate:
-	docker-compose run --rm app sh -c "python manage.py makemigrations"
-	docker-compose run --rm app sh -c "python manage.py migrate"
+	docker-compose run --rm app sh -c "python manage.py makemigrations ${app}"
+	docker-compose run --rm app sh -c "python manage.py migrate ${app}"
 
 pro:
 	docker-compose run --rm app sh -c "django-admin startproject ${pro} ."

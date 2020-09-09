@@ -1,14 +1,22 @@
 from django.contrib import admin
 
-from .models import Category, Product
+from .models import LargeCategory, MediumCategory, Product
 
 
-class CategoryAdmin(admin.ModelAdmin):
+class LargeCategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug']
     prepopulated_fields = {'slug': ('name',)}
 
 
-admin.site.register(Category, CategoryAdmin)
+admin.site.register(LargeCategory, LargeCategoryAdmin)
+
+
+class MediumCategoryAdmin(admin.ModelAdmin):
+    list_display = ['name', 'slug']
+    prepopulated_fields = {'slug': ('name',)}
+
+
+admin.site.register(MediumCategory, MediumCategoryAdmin)
 
 
 class ProductAdmin(admin.ModelAdmin):
