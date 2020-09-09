@@ -20,6 +20,9 @@ init:
 	docker-compose run --rm app sh -c "python manage.py makemigrations shop"
 	docker-compose run --rm app sh -c "python manage.py makemigrations cart"
 
+collectstatic:
+	docker-compose run --rm app sh -c "python manage.py collectstatic"
+
 restart:
 	docker-compose restart
 	docker-compose stop
