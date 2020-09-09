@@ -23,6 +23,3 @@ DATABASES = {
         'PASSWORD': os.environ.get('DB_PASS'),
     }
 }
-
-AWS_ACCESS_KEY_ID = 'AKIAZEI44AL2MFOAAO64'
-AWS_SECRET_ACCESS_KEY = '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'
