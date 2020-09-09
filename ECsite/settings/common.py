@@ -18,7 +18,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'storages',
     # my apps
     'shop.apps.ShopConfig',
     'search.apps.SearchConfig',
@@ -99,5 +98,3 @@ STATICFILES_DIRS = (
 )
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'media')
-
-from ECsite.aws.conf import *
