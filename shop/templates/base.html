@@ -2,33 +2,42 @@
 <!doctype html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="{% block metadescription %}{% endblock %}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js"
-            integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe"
-            crossorigin="anonymous"></script>
-    <title>{% block title %}{% endblock %}</title>
-</head>
+        <meta charset="UTF-8">
+        <meta name="description" content="{% block metadescription %}{% endblock %}">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        
+        <!-- Title  -->
+        <title>Essence - Fashion Ecommerce Template</title>
+        
+        <!-- Favicon  -->
+        <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
+        
+        <!-- Core Style CSS -->
+        <link rel="stylesheet" href="{% static 'css/core-style.css' %}">
+        <!-- <link rel="stylesheet" href="style.css"> -->
+        
+        </head>
 <body>
 <div class="container">
     {% include 'header.html' %}
-    {% include 'navbar.html' %}
+    {% include 'right-side-cart.html' %}
     {% block content %}{% endblock %}
 </div>
 
-{% include 'footer.html' %}
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+    {% include 'footer.html' %}
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="{% static 'js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- Plugins js -->
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <!-- Classy Nav js -->
+    <script src="{% static 'js/classy-nav.min.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'js/active.js' %}"></script>
 </body>
 </html>
