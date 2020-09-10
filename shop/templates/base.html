@@ -20,11 +20,9 @@
         
         </head>
 <body>
-<div class="container">
-    {% include 'header.html' %}
-    {% include 'right-side-cart.html' %}
-    {% block content %}{% endblock %}
-</div>
+{% include 'header.html' %}
+{% include 'right-side-cart.html' %}
+{% block content %}{% endblock %}
 
     {% include 'footer.html' %}
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
