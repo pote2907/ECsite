@@ -1,7 +1,7 @@
-from .models import Category
+from .models import MediumCategory
 
 
 def menu_links(request):
     """カテゴリーのリンクを返す"""
-    links = Category.objects.all()
+    links = MediumCategory.objects.all()
     return dict(links=links)
