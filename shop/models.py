@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 
+
 class ValidManager(models.Manager):
     """available=TrueのProductだけ返すようにする"""
 
@@ -8,19 +9,30 @@ class ValidManager(models.Manager):
         return super(ValidManager, self).get_queryset().filter(available=True)
 
 
-class Category(models.Model):
+class LargeCategory(models.Model):
+    """大カテゴリー"""
     name = models.CharField(max_length=250, unique=True)
     slug = models.SlugField(max_length=250, unique=True)
     description = models.TextField(blank=True)
     image = models.ImageField(upload_to='category', blank=True)
 
-    class Meta:
-        ordering = ('name',)
-        verbose_name = 'category'
-        verbose_name_plural = 'categories'
+    def get_url(self):
+        return reverse('shop:products_by_large_category', args=[self.slug])
+
+    def __str__(self):
+        return self.name
+
+
+class MediumCategory(models.Model):
+    """中カテゴリー"""
+    large_category = models.ForeignKey(LargeCategory, on_delete=models.CASCADE)
+    name = models.CharField(max_length=250, unique=True)
+    slug = models.SlugField(max_length=250, unique=True)
+    description = models.TextField(blank=True)
+    image = models.ImageField(upload_to='category', blank=True)
 
     def get_url(self):
-        return reverse('shop:products_by_category', args=[self.slug])
+        return reverse('shop:products_by_medium_category', args=[self.slug])
 
     def __str__(self):
         return self.name
@@ -30,7 +42,7 @@ class Product(models.Model):
     name = models.CharField(max_length=250, unique=True)
     slug = models.SlugField(max_length=250, unique=True)
     description = models.TextField(blank=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(MediumCategory, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(upload_to='product', blank=True)
     stock = models.IntegerField()
