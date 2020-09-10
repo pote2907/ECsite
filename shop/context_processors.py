@@ -1,7 +1,12 @@
-from .models import MediumCategory
+from .models import MediumCategory, LargeCategory
 
 
-def menu_links(request):
-    """カテゴリーのリンクを返す"""
-    links = MediumCategory.objects.all()
-    return dict(links=links)
+def medium_menu_links(request):
+    """中カテゴリーのリンクを返す"""
+    medium_links = MediumCategory.objects.all()
+    return dict(medium_links=medium_links)
+
+def large_menu_links(request):
+    """大カテゴリーのリンクを返す"""
+    large_links = LargeCategory.objects.all()
+    return dict(large_links=large_links)
