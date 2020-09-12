@@ -45,26 +45,19 @@
                             <!--  Catagories  -->
                             <div class="catagories-menu">
                                 <ul id="menu-content2" class="menu-content collapse show">
+                                    {% for large_link in large_links %}
                                     <!-- Single Item -->
-                                    <li data-toggle="collapse" data-target="#clothing">
-                                        <a href="#">clothing</a>
-                                        <ul class="sub-menu collapse show" id="clothing">
-                                            <li><a href="#">All</a></li>
-                                            <li><a href="#">Bodysuits</a></li>
-                                            <li><a href="#">Dresses</a></li>
-                                            <li><a href="#">Hoodies &amp; Sweats</a></li>
+                                    <li data-toggle="collapse" data-target="#{{ large_link.name }}">
+                                        <a href="#">{{ large_link.name }}</a>
+                                        <ul class="sub-menu collapse show" id="{{ large_link.name }}">
+                                            {% for medium_link in medium_links %}
+                                                {% ifequal large_link.id medium_link.large_category.id %}
+                                                <li><a href="#">{{ medium_link.name }}</a></li>
+                                                {% endifequal %}
+                                            {% endfor %}
                                         </ul>
                                     </li>
-                                    <!-- Single Item -->
-                                    <li data-toggle="collapse" data-target="#accessories" class="collapsed">
-                                        <a href="#">accessories</a>
-                                        <ul class="sub-menu collapse" id="accessories">
-                                            <li><a href="#">All</a></li>
-                                            <li><a href="#">Bodysuits</a></li>
-                                            <li><a href="#">Dresses</a></li>
-                                            <li><a href="#">Hoodies &amp; Sweats</a></li>
-                                        </ul>
-                                    </li>
+                                    {% endfor %} 
                                 </ul>
                             </div>
                         </div>

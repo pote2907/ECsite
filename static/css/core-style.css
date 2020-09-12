@@ -957,6 +957,11 @@ img {
   .single_product_details_area .product_thumbnail_slides {
     position: relative;
     z-index: 1; }
+    .single_product_details_area .product_thumbnail_slides img{
+      -webkit-transition-duration: 500ms;
+      transition-duration: 500ms;
+      height: 600px;
+    }
     .single_product_details_area .product_thumbnail_slides .owl-prev,
     .single_product_details_area .product_thumbnail_slides .owl-next {
       -webkit-transition-duration: 500ms;
@@ -1007,7 +1012,7 @@ img {
       margin-bottom: 0;
       font-family: "Ubuntu", sans-serif;
       font-size: 24px;
-      color: #dc0345;
+      color: #000000;
       font-weight: 700; }
       @media only screen and (min-width: 768px) and (max-width: 991px) {
         .single_product_details_area .single_product_desc .product-price {

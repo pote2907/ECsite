@@ -1,8 +1,6 @@
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
 from django.shortcuts import render, get_object_or_404
-
 from shop.models import Product, MediumCategory, LargeCategory
-
 
 def all_products(request, c_slug=None):
     products_list = None

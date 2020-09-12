@@ -22,19 +22,14 @@
                             <li><a href="#">Shop</a>
                                 <div class="megamenu">
                                     <ul class="single-mega cn-col-4">
-                                        <li class="title">CLOTHING</li>
-                                        <li><a href="shop.html">トップス</a></li>
-                                        <li><a href="shop.html">アウター</a></li>
-                                        <li><a href="shop.html">パンツ</a></li>
-                                        <li><a href="shop.html">ワンピース・ドレス</a></li>
-                                        <li><a href="shop.html">スカート</a></li>
-                                    </ul>
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">OTHER</li>
-                                        <li><a href="shop.html">バッグ</a></li>
-                                        <li><a href="shop.html">アクセサリー</a></li>
-                                        <li><a href="shop.html">ファッション小物</a></li>
-                                        <li><a href="shop.html">帽子</a></li>
+                                        {% for large_link in large_links %}
+                                        <li class="title">{{ large_link.name }}</li>
+                                        {% for medium_link in medium_links %}
+                                        {% ifequal large_link.id medium_link.large_category.id %}
+                                        <li><a href="shop.html">{{ medium_link.name }}</a></li>
+                                        {% endifequal %}
+                                        {% endfor %}
+                                        {% endfor %}
                                     </ul>
                                     <div class="single-mega cn-col-4">
                                         <img src="{% static 'img/bg-img/bg-6.jpg' %}" alt="">
@@ -54,7 +49,6 @@
                                 </ul>
                             </li>
                             <li><a href="blog.html">Blog</a></li>
-                            <li><a href="contact.html">Contact</a></li>
                         </ul>
                     </div>
                     <!-- Nav End -->
