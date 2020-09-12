@@ -742,20 +742,22 @@ img {
   overflow: hidden;
   background-color: #ffffff; }
   .single-product-wrapper .product-img {
+    width: 100%;
+    height: 300px;
     position: relative;
     z-index: 1;
     overflow: hidden; }
     .single-product-wrapper .product-img img {
-      width: 100%;
       -webkit-transition-duration: 500ms;
-      transition-duration: 500ms; }
+      transition-duration: 500ms;
+      width: 100%;
+      height: 300px; }
     .single-product-wrapper .product-img .hover-img {
       -webkit-transition-duration: 500ms;
       transition-duration: 500ms;
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
       z-index: 10;
       opacity: 0;
       visibility: hidden; }
