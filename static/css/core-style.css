@@ -265,6 +265,10 @@ img {
     flex: 0 0 50%;
     min-width: 50%;
     width: 50%; }
+  .header_area .nav-brand img {
+    width: 100px;
+    height: 80px;
+  }
     @media only screen and (max-width: 767px) {
       .header_area .classy-navbar,
       .header_area .header-meta {
@@ -960,7 +964,9 @@ img {
     .single_product_details_area .product_thumbnail_slides img{
       -webkit-transition-duration: 500ms;
       transition-duration: 500ms;
-      height: 600px;
+      width: 50%;
+      height: 50%;
+      margin: 0 auto;
     }
     .single_product_details_area .product_thumbnail_slides .owl-prev,
     .single_product_details_area .product_thumbnail_slides .owl-next {

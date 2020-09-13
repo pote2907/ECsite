@@ -22,7 +22,7 @@
         <div class="row h-100 align-items-center">
             <div class="col-12">
                 <div class="page-title text-center">
-                    <h2>all items</h2>
+                    <h2>shop</h2>
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
                         <div class="widget catagory mb-50">
                             <!-- Widget Title -->
                             <h6 class="widget-title mb-30">Catagories</h6>
-
+                            
                             <!--  Catagories  -->
                             <div class="catagories-menu">
                                 <ul id="menu-content2" class="menu-content collapse show">
@@ -52,7 +52,7 @@
                                         <ul class="sub-menu collapse show" id="{{ large_link.name }}">
                                             {% for medium_link in medium_links %}
                                                 {% ifequal large_link.id medium_link.large_category.id %}
-                                                <li><a href="#">{{ medium_link.name }}</a></li>
+                                                <li><a href="{{ medium_link.get_url }}">{{ medium_link.name }}</a></li>
                                                 {% endifequal %}
                                             {% endfor %}
                                         </ul>
@@ -70,7 +70,7 @@
                                 <div class="product-topbar d-flex align-items-center justify-content-between">
                                     <!-- Total Products -->
                                     <div class="total-products">
-                                        <p><span>186</span> products found</p>
+                                        <p>products found</p>
                                     </div>
                                     <!-- Sorting -->
                                     <div class="product-sorting d-flex">
