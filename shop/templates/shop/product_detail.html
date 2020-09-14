@@ -72,8 +72,6 @@
                     $("#id_div_ajax_response").text('');
                     const btn = `<a class="btn essence-btn" href="{% url 'cart:add_cart' product.id 'size' %}">Add to cart</a>`
                     $("#id_div_ajax_response").append(btn.replace('size', data));
-
-
                 })
         });
 

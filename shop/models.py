@@ -34,6 +34,12 @@ class MediumCategory(models.Model):
     def get_url(self):
         return reverse('shop:products_by_medium_category', args=[self.slug])
 
+    def ascending(self):
+        return reverse('shop:sorted_category_products', args=['ascending', self.slug])
+
+    def descending(self):
+        return reverse('shop:sorted_category_products', args=['descending', self.slug])
+
     def __str__(self):
         return self.name
 

@@ -5,7 +5,7 @@ from django.shortcuts import render, get_object_or_404
 from shop.models import Product, MediumCategory
 
 
-def all_products(request, c_slug=None):
+def all_products(request, c_slug=None, order=None):
     products_list = None
     category_page = None
 
@@ -16,6 +16,11 @@ def all_products(request, c_slug=None):
     else:
         # available=TrueのProductを取得
         products_list = Product.valid_objects.all()
+
+    if order == 'ascending':
+        products_list = products_list.order_by('price')
+    if order == 'descending':
+        products_list = products_list.order_by('-price')
     # 3製品ごとに分割
     paginator = Paginator(products_list, 3)
     try:
@@ -29,7 +34,13 @@ def all_products(request, c_slug=None):
     except (EmptyPage, InvalidPage):
         products = paginator.page(paginator.num_pages)
 
-    return render(request, 'shop/product_list.html', {'products': products, 'category': category_page})
+    context = {
+        'products': products,
+        'category': category_page,
+        'order': order
+    }
+
+    return render(request, 'shop/product_list.html', context)
 
 
 def product_detail(request, product_slug):
