@@ -1,6 +1,9 @@
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from shop.models import Product, MediumCategory, LargeCategory
+
+from shop.models import Product, MediumCategory
+
 
 def all_products(request, c_slug=None):
     products_list = None
@@ -35,3 +38,8 @@ def product_detail(request, product_slug):
     except Exception as e:
         raise e
     return render(request, 'shop/product_detail.html', {'product': product})
+
+
+def size_ajax_response(request, product_slug):
+    size = request.POST.getlist('name_input_text')[0]
+    return HttpResponse(size)

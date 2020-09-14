@@ -28,26 +28,54 @@
             <p class="product-desc">{{ product.description }}</p>
 
             <!-- Form -->
-            <form class="cart-form clearfix" method="post">
-                <!-- Select Box -->
+            <form name="name_form" method="POST" id="select_form">
+                {% csrf_token %}
                 <div class="select-box d-flex mt-50 mb-30">
-                    <select name="select" id="productSize" class="mr-5">
-                        <option value="value">Size: XL</option>
-                        <option value="value">Size: L</option>
-                        <option value="value">Size: M</option>
+                    <select name="name_input_text" id="product_size" class="mr-5" onchange="changeSelect()">
+                        <option value="M">Size: M</option>
+                        <option value="L">Size: L</option>
+                        <option value="XL">Size: XL</option>
                     </select>
                 </div>
-                <!-- Cart & Favourite Box -->
-                <div class="cart-fav-box d-flex align-items-center">
-                    <!-- Cart -->
-                    <a class="btn essence-btn" href="{% url 'cart:add_cart' product.id %}">Add to cart</a>
-                    <!-- Favourite -->
-                    <div class="product-favourite ml-4">
-                        <a href="" class="favme fa fa-heart"></a>
-                    </div>
-                </div>
+                <input class="btn" type="submit" id="select_submit" hidden>
             </form>
+{#            <span id="id_div_ajax_response">#}
+{#                AJAX RESPONSE#}
+{#            </span>#}
+            <div class="cart-fav-box d-flex align-items-center" id="id_div_ajax_response">
+                <a class="btn essence-btn" href="{% url 'cart:add_cart' product.id 'M' %}">Add to cart</a>
+            </div>
         </div>
     </section>
     <!-- ##### Single Product Details Area End ##### -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+            crossorigin="anonymous"></script>
+    <script>
+        const changeSelect = () => {
+            // セレクトフォームが変更されたら送信
+            document.getElementById('select_submit').click()
+        }
+
+        $("form").submit(function (event) {
+            event.preventDefault();
+            var form = $(this);
+            $.ajax({
+                url: '{% url "shop:size_ajax" product.slug %}',
+                method: form.prop("method"),
+                data: form.serialize(),
+                timeout: 10000,
+                dataType: "text",
+            })
+                .done(function (data) {
+                    $("#id_div_ajax_response").text('');
+                    const btn = `<a class="btn essence-btn" href="{% url 'cart:add_cart' product.id 'size' %}">Add to cart</a>`
+                    $("#id_div_ajax_response").append(btn.replace('size', data));
+
+
+                })
+        });
+
+    </script>
 {% endblock %}
