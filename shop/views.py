@@ -3,11 +3,13 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 
 from shop.models import Product, MediumCategory
+from cart.models import CartItem
 
 
 def all_products(request, c_slug=None, order=None):
     products_list = None
     category_page = None
+    cart_items = CartItem.objects.all()
 
     if c_slug is not None:
         category_page = get_object_or_404(MediumCategory, slug=c_slug)
@@ -37,18 +39,20 @@ def all_products(request, c_slug=None, order=None):
     context = {
         'products': products,
         'category': category_page,
-        'order': order
+        'order': order,
+        'cart_items': cart_items,
     }
 
     return render(request, 'shop/product_list.html', context)
 
 
 def product_detail(request, product_slug):
+    cart_items = CartItem.objects.all()
     try:
         product = Product.objects.get(slug=product_slug)
     except Exception as e:
         raise e
-    return render(request, 'shop/product_detail.html', {'product': product})
+    return render(request, 'shop/product_detail.html', {'product': product, 'cart_items': cart_items})
 
 
 def size_ajax_response(request, product_slug):

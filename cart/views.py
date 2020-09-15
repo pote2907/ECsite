@@ -46,7 +46,8 @@ def add_cart(request, product_id, size):
             size=size,
         )
         cart_item.save()
-    return redirect('cart:cart_detail')
+    # return redirect('cart:cart_detail')
+    return redirect('shop:all_product')
 
 
 def cart_remove(request, product_id, size):
@@ -66,4 +67,4 @@ def full_remove(request, product_id, size):
     product = get_object_or_404(Product, id=product_id)
     cart_item = CartItem.objects.get(product=product, cart=cart, size=size)
     cart_item.delete()
-    return redirect('cart:cart_detail')
+    return redirect('shop:all_product')
