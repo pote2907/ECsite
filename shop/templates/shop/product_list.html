@@ -38,7 +38,7 @@
                     <div class="shop_sidebar_area">
 
                         <!-- ##### Single Widget ##### -->
-                        <div class="widget catagory mb-50">
+                        <div class="widget catagory mb-50 d-none d-md-block">
                             <!-- Widget Title -->
                             <h6 class="widget-title mb-30">Catagories</h6>
                             
@@ -70,7 +70,12 @@
                                 <div class="product-topbar d-flex align-items-center justify-content-between">
                                     <!-- Total Products -->
                                     <div class="total-products">
-                                        <p>products found</p>
+                                        {% if category %}
+                                        <p>{{ category.name }}</p>
+                                    {% else %}
+                                        <p>all products</p>
+                                    {% endif %}
+
                                     </div>
                                     <!-- Sorting -->
                                     <div class="product-sorting d-flex">
