@@ -50,11 +50,15 @@ class Product(models.Model):
     description = models.TextField(blank=True)
     category = models.ForeignKey(MediumCategory, on_delete=models.CASCADE)
     price = models.IntegerField()
-    image = models.ImageField(upload_to='product', blank=True)
     stock = models.IntegerField()
     available = models.BooleanField(default=True)
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
+    main_image = models.ImageField(upload_to='product', blank=True)
+    sub_image1 = models.ImageField(upload_to='product', blank=True)
+    sub_image2 = models.ImageField(upload_to='product', blank=True)
+    sub_image3 = models.ImageField(upload_to='product', blank=True)
+
 
     # デフォルトのマネージャー
     objects = models.Manager()
