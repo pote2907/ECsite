@@ -3,13 +3,16 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 
 from shop.models import Product, MediumCategory
-from cart.models import CartItem
+from cart.models import CartItem, Cart
+from cart.views import _cart_id
 
 
-def all_products(request, c_slug=None, order=None):
+def all_products(request, c_slug=None, order=None, total=0):
     products_list = None
     category_page = None
-    cart_items = CartItem.objects.all()
+
+    cart = Cart.objects.get(cart_id=_cart_id(request))
+    cart_items = CartItem.objects.filter(cart=cart)
 
     if c_slug is not None:
         category_page = get_object_or_404(MediumCategory, slug=c_slug)
@@ -36,23 +39,38 @@ def all_products(request, c_slug=None, order=None):
     except (EmptyPage, InvalidPage):
         products = paginator.page(paginator.num_pages)
 
+    for cart_item in cart_items:
+        total += (cart_item.product.price * cart_item.quantity)
+
     context = {
         'products': products,
         'category': category_page,
         'order': order,
         'cart_items': cart_items,
+        'total': total,
     }
 
     return render(request, 'shop/product_list.html', context)
 
 
-def product_detail(request, product_slug):
-    cart_items = CartItem.objects.all()
+def product_detail(request, product_slug, total=0):
+    cart = Cart.objects.get(cart_id=_cart_id(request))
+    cart_items = CartItem.objects.filter(cart=cart)
     try:
         product = Product.objects.get(slug=product_slug)
     except Exception as e:
         raise e
-    return render(request, 'shop/product_detail.html', {'product': product, 'cart_items': cart_items})
+
+    for cart_item in cart_items:
+        total += (cart_item.product.price * cart_item.quantity)
+
+    context = {
+        'product': product,
+        'cart_items': cart_items,
+        'total': total,
+    }
+
+    return render(request, 'shop/product_detail.html', context)
 
 
 def size_ajax_response(request, product_slug):
