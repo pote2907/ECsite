@@ -10,8 +10,14 @@ from cart.views import _cart_id
 def all_products(request, c_slug=None, order=None, total=0):
     products_list = None
     category_page = None
+    try:
+        cart = Cart.objects.get(cart_id=_cart_id(request))
+    except Cart.DoesNotExist:
+        cart = Cart.objects.create(
+            cart_id=_cart_id(request)
+        )
+        cart.save()
 
-    cart = Cart.objects.get(cart_id=_cart_id(request))
     cart_items = CartItem.objects.filter(cart=cart)
 
     if c_slug is not None:
