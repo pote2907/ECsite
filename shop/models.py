@@ -54,10 +54,10 @@ class Product(models.Model):
     available = models.BooleanField(default=True)
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
-    main_image = models.ImageField(upload_to='product', blank=True)
-    sub_image1 = models.ImageField(upload_to='product', blank=True)
-    sub_image2 = models.ImageField(upload_to='product', blank=True)
-    sub_image3 = models.ImageField(upload_to='product', blank=True)
+    main_image = models.ImageField(upload_to='product')
+    sub_image1 = models.ImageField(upload_to='product')
+    sub_image2 = models.ImageField(upload_to='product')
+    sub_image3 = models.ImageField(upload_to='product')
 
 
     # デフォルトのマネージャー
