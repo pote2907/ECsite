@@ -45,6 +45,7 @@
                             <!--  Catagories  -->
                             <div class="catagories-menu">
                                 <ul id="menu-content2" class="menu-content collapse show">
+                                    <a href="{% url 'shop:all_product' %}">ALL</a>
                                     {% for large_link in large_links %}
                                     <!-- Single Item -->
                                     <li data-toggle="collapse" data-target="#{{ large_link.name }}">
