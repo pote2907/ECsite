@@ -28,7 +28,7 @@
             </a>
             <p class="product-price">¥{{ product.price }} (税込)</p>
             <p class="product-desc">{{ product.description }}</p>
-
+            {% if product.size == True %}
             <!-- Form -->
             <form name="name_form" method="POST" id="select_form">
                 {% csrf_token %}
@@ -39,8 +39,9 @@
                         <option value="XL">Size: XL</option>
                     </select>
                 </div>
-                <input class="btn" type="submit" id="select_submit" hidden>
+                <input class="size-btn" type="submit" id="select_submit" hidden>
             </form>
+           {% endif %} 
 {#            <span id="id_div_ajax_response">#}
 {#                AJAX RESPONSE#}
 {#            </span>#}

@@ -51,6 +51,7 @@ class Product(models.Model):
     category = models.ForeignKey(MediumCategory, on_delete=models.CASCADE)
     price = models.IntegerField()
     stock = models.IntegerField()
+    size = models.BooleanField(default=True)
     available = models.BooleanField(default=True)
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)

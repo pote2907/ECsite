@@ -144,6 +144,11 @@
         $('[data-toggle="tooltip"]').tooltip();
     }
 
+    // :: size-btn a click
+    // $(".size-btn").on('click', function(){
+    //     $("option").hide();
+    // });
+
     // :: PreventDefault a Click
     $("a[href='#']").on('click', function ($) {
         $.preventDefault();
