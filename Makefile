@@ -24,6 +24,6 @@ restart:
 	docker-compose restart
 	docker-compose stop
 	heroku container:login
-	heroku container:push web -a new-ecsite
-	heroku container:release web -a new-ecsite
+	heroku container:push web -a miioam
+	heroku container:release web -a miioam
 	

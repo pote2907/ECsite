@@ -1,4 +1,5 @@
 import os
+from ECsite.aws.conf import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -22,6 +23,7 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'search.apps.SearchConfig',
     'cart.apps.CartConfig',
+    'storages',
 ]
 
 MIDDLEWARE = [
