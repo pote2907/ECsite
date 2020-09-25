@@ -47,7 +47,7 @@ def add_cart(request, product_id, size):
         )
         cart_item.save()
     # return redirect('cart:cart_detail')
-    return redirect('shop:all_product_cart_on')
+    return redirect('shop:all_product')
 
 
 def cart_remove(request, product_id, size):

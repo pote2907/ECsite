@@ -42,9 +42,25 @@
             <ul class="summary-table">
                 <li><span>total:</span> <span>¥: {{ total }}</span></li>
             </ul>
-            <div class="checkout-btn mt-50">
-                <a href="checkout.html" class="btn essence-btn">check out</a>
+            <div class="mx-auto">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <script
+                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                            data-key="{{ data_key }}"
+                            data-amount="{{ total }}"
+                            data-name="Miioam"
+                            data-description="Example charge"
+                            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                            data-locale="auto"
+                            data-currency="jpy">
+                    </script>
+                </form>
             </div>
+
+{#            <div class="checkout-btn mt-50">#}
+{#                <a href="checkout.html" class="btn essence-btn">check out</a>#}
+{#            </div>#}
         </div>
     </div>
 </div>
