@@ -99,7 +99,7 @@ def all_products(request, c_slug=None, order=None, total=0):
                     order_item.delete()
 
                     print('The order has been created')
-                return redirect('shop:all_product')
+                return redirect('shop:thanks')
             except ObjectDoesNotExist:
                 pass
 
@@ -141,3 +141,22 @@ def product_detail(request, product_slug, total=0):
 def size_ajax_response(request, product_slug):
     size = request.POST.getlist('name_input_text')[0]
     return HttpResponse(size)
+
+def thanks(request):
+    total = 0
+    cart = Cart.objects.get(cart_id=_cart_id(request))
+    cart_items = CartItem.objects.filter(cart=cart)
+    try:
+        product = Product.objects.all()
+    except Exception as e:
+        raise e
+
+    for cart_item in cart_items:
+        total += (cart_item.product.price * cart_item.quantity)
+
+    context = {
+        'product': product,
+        'cart_items': cart_items,
+        'total': total,
+    }
+    return render(request, 'shop/order_thanks.html', context)

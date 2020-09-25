@@ -6,4 +6,5 @@ from .models import CartItem, Cart, OrderItem, Order
 admin.site.register(Cart)
 admin.site.register(CartItem)
 admin.site.register(Order)
+admin.site.register(OrderItem)
 
