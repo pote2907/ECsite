@@ -104,6 +104,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'media')
 
 # Stripe settings
 # 公開キー
-STRIPE_PUBLISHABLE_KEY = 'pk_test_51HUuDmAMG1JbjSh1USGPtVxGy5EyyoNUvWFzIljZnZRSBpUiFhfxssrE5IFivvVehYmNl7t8EnxbB5hTWyvX9pYg00TS5UJqQP'
+STRIPE_PUBLISHABLE_KEY = os.environ['STRIPE_PUBLISHABLE_KEY']
 # シークレットキー
-STRIPE_SECRET_KEY = 'sk_test_51HUuDmAMG1JbjSh1DYWM9Fo6O2hzBfk3TplkF08IwjkcozyHhVtMuOMNOcDaFMuDfqmP0WVHqqASbss8lonx94BV006RFMHi03'
+STRIPE_SECRET_KEY = os.environ['STRIPE_SECRET_KEY']
