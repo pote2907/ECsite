@@ -1,14 +1,13 @@
+import stripe
+from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from django.conf import settings
-from django.core.exceptions import ObjectDoesNotExist
 
 from cart.models import CartItem, Cart, Order, OrderItem
 from cart.views import _cart_id
 from shop.models import Product, MediumCategory
-
-import stripe
 
 
 def all_products(request, c_slug=None, order=None, total=0):
@@ -87,6 +86,7 @@ def all_products(request, c_slug=None, order=None, total=0):
                     oi = OrderItem.objects.create(
                         product=order_item.product.name,
                         quantity=order_item.quantity,
+                        size=order_item.size,
                         price=order_item.product.price,
                         order=order_details
                     )
@@ -94,12 +94,17 @@ def all_products(request, c_slug=None, order=None, total=0):
 
                     # 注文の時に在庫を減らす
                     products = Product.objects.get(id=order_item.product.id)
-                    products.stock = int(order_item.product.stock - order_item.quantity)
+                    if order_item.size == 'M':
+                        products.stock_m = int(order_item.product.stock_m - order_item.quantity)
+                    if order_item.size == 'L':
+                        products.stock_l = int(order_item.product.stock_l - order_item.quantity)
+                    if order_item.size == 'XL':
+                        products.stock_xl = int(order_item.product.stock_xl - order_item.quantity)
                     products.save()
                     order_item.delete()
 
                     print('The order has been created')
-                return redirect('shop:thanks')
+                return redirect('shop:all_product')
             except ObjectDoesNotExist:
                 pass
 
@@ -141,6 +146,7 @@ def product_detail(request, product_slug, total=0):
 def size_ajax_response(request, product_slug):
     size = request.POST.getlist('name_input_text')[0]
     return HttpResponse(size)
+
 
 def thanks(request):
     total = 0

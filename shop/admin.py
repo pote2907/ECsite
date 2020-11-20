@@ -20,8 +20,8 @@ admin.site.register(MediumCategory, MediumCategoryAdmin)
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['name', 'price', 'stock', 'available', 'created', 'updated']
-    list_editable = ['price', 'stock', 'available']
+    list_display = ['name', 'price', 'stock_m', 'stock_l', 'stock_xl', 'available', 'created', 'updated']
+    list_editable = ['price', 'available']
     prepopulated_fields = {'slug': ('name',)}
     list_per_page = 20
 

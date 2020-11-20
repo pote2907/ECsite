@@ -26,4 +26,3 @@ restart:
 	heroku container:login
 	heroku container:push web -a miioam
 	heroku container:release web -a miioam
-	

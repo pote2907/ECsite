@@ -34,9 +34,9 @@
                 {% csrf_token %}
                 <div class="select-box d-flex mt-50 mb-30">
                     <select name="name_input_text" id="product_size" class="mr-5" onchange="changeSelect()">
-                        <option value="M">Size: M</option>
-                        <option value="L">Size: L</option>
-                        <option value="XL">Size: XL</option>
+                        <option value="M" {% if product.stock_m <= 0%}disabled{% endif %}>Size: M</option>
+                        <option value="L" {% if product.stock_l <= 0%}disabled{% endif %}>Size: L</option>
+                        <option value="XL" {% if product.stock_xl <= 0%}disabled{% endif %}>Size: XL</option>
                     </select>
                 </div>
                 <input class="size-btn" type="submit" id="select_submit" hidden>
