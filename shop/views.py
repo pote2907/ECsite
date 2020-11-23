@@ -166,3 +166,9 @@ def thanks(request):
         'total': total,
     }
     return render(request, 'shop/order_thanks.html', context)
+
+
+def special_commercial_code(request):
+    """特商法"""
+    return render(request, 'shop/special_commercial_code.html')
+

@@ -11,5 +11,6 @@ urlpatterns = [
     path('order/<str:order>/<slug:c_slug>', views.all_products, name='sorted_category_products'),
     path('<slug:product_slug>/', views.product_detail, name='product_detail'),
     path('<slug:product_slug>/size/', views.size_ajax_response, name='size_ajax'),
-    path('thank_you/order', views.thanks, name='thanks')
+    path('thank_you/order', views.thanks, name='thanks'),
+    path('display/scc', views.special_commercial_code, name='special_commercial_code'),
 ]
