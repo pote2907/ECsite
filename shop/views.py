@@ -172,3 +172,10 @@ def special_commercial_code(request):
     """特商法"""
     return render(request, 'shop/special_commercial_code.html')
 
+def privacy_policy(request):
+    """プライバシーポリシー"""
+    return render(request, 'shop/privacy.html')
+
+def terms_of_use(request):
+    """利用規約"""
+    return render(request, 'shop/terms_of_use.html')

@@ -13,4 +13,6 @@ urlpatterns = [
     path('<slug:product_slug>/size/', views.size_ajax_response, name='size_ajax'),
     path('thank_you/order', views.thanks, name='thanks'),
     path('display/scc', views.special_commercial_code, name='special_commercial_code'),
+    path('display/privacy', views.privacy_policy, name='privacy_policy'),
+    path('display/terms_of_use', views.terms_of_use, name='terms_of_use'),
 ]
