@@ -37,7 +37,7 @@ def all_products(request, c_slug=None, order=None, total=0):
     if order == 'descending':
         products_list = products_list.order_by('-price')
     # 3製品ごとに分割
-    paginator = Paginator(products_list, 3)
+    paginator = Paginator(products_list, 10)
     try:
         # 何ページ目なのか取得('page'が指定されなかったときは,1を取得)
         page = int(request.GET.get('page', '1'))
