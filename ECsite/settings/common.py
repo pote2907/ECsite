@@ -107,3 +107,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'media')
 STRIPE_PUBLISHABLE_KEY = os.environ['STRIPE_PUBLISHABLE_KEY']
 # シークレットキー
 STRIPE_SECRET_KEY = os.environ['STRIPE_SECRET_KEY']
+
+from ECsite.aws.conf import *
