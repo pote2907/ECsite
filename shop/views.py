@@ -69,7 +69,7 @@ def all_products(request, c_slug=None, order=None, total=0):
             )
             charge = stripe.Charge.create(
                 amount=stripe_total,
-                currency='GBP',
+                currency='jpy',
                 description=description,
                 customer=customer.id
             )
